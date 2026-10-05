@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 公開前は検索エンジンに載らないようにしておく(公開時に消してよい) -->
+<meta name="robots" content="noindex, nofollow">
+<title>Slay the Magic 配布ページ</title>
+<!--
+  ============================================================
+  Slay the Magic 配布ページ
+
+  【編集のしかた】
+  このファイルをメモ帳や VS Code で開き、
+  「★変更」と書かれた場所を書き換えてください。
+  外部のファイルや画像は一切読み込んでいないので、
+  このファイル1つだけで表示できます。
+
+  【公開前の注意】
+  このファイルはまだ公開しないこと。GitHub Pages などに置いた時点で
+  誰でも見られる状態になる。
+
+  【動画を差し替えるとき】
+  iframe の src="https://www.youtube-nocookie.com/embed/動画ID" の
+  動画ID を変える。動画ID は youtu.be/ の後ろの文字列。
+  ※パソコンでこのファイルを直接開くと、YouTube 側の制限で
+    動画が「エラー」と表示されることがある。ウェブ上に置けば再生される。
+
+  【ZIP のリンクを貼る場所】
+  下の本文にある  id="zip-link"  の行の  href="#"  の # を、
+  ZIP のダウンロード URL に置き換えてください。
+  (例: href="https://drive.google.com/…")
+  ============================================================
+-->
+<style>
+  :root {
+    --bg: #ffffff;
+    --text: #222222;
+    --muted: #666666;
+    --line: #e3e3e3;
+    --soft: #f6f6f7;
+    --accent: #7a2233;
+    --link: #1f5fbf;
+    --sans: "Noto Sans JP", "Yu Gothic UI", "Yu Gothic", "Hiragino Sans", "Meiryo", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--bg); }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.8;
+    font-size: 16px;
+  }
+  a { color: var(--link); }
+
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px 64px; }
+
+  /* 最初の画面: タイトルとダウンロードボタンを画面の中央に置く */
+  header.hero {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    text-align: center;
+    padding: 32px 16px;
+  }
+  .hero h1 { font-size: clamp(2.4rem, 8vw, 4rem); margin: 0; letter-spacing: 0.03em; line-height: 1.2; }
+
+  section { padding: 28px 0 8px; border-top: 1px solid var(--line); margin-top: 28px; }
+  section h2 { font-size: 1.3rem; margin: 0 0 14px; }
+  p { margin: 0 0 12px; }
+  .note { color: var(--muted); font-size: 0.92rem; }
+
+  .dl-button {
+    display: inline-block;
+    padding: 14px 36px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    background: var(--accent);
+    border-radius: 6px;
+  }
+  .dl-button:hover { color: #fff; opacity: 0.9; }
+
+  .links { display: grid; gap: 10px; }
+  .link-card {
+    display: block;
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    text-decoration: none;
+    color: var(--text);
+  }
+  .link-card:hover { background: var(--soft); color: var(--text); }
+  .link-card .label { font-weight: bold; display: block; }
+  .link-card .url { display: block; font-size: 0.85rem; color: var(--link); word-break: break-all; }
+
+  table { width: 100%; border-collapse: collapse; }
+  th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-weight: bold; width: 34%; white-space: nowrap; background: var(--soft); }
+
+  .video {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+  .video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .video-title { font-weight: bold; margin: 0 0 8px; }
+
+  ul.credits { margin: 0 0 12px; padding-left: 1.2em; }
+  ul.credits li { margin-bottom: 10px; }
+  .credits .url { font-size: 0.85rem; word-break: break-all; }
+  .notice-en { font-size: 0.78rem; margin-top: 6px; }
+  kbd {
+    font-family: Consolas, monospace;
+    background: var(--soft); border: 1px solid var(--line); border-radius: 4px;
+    padding: 1px 6px; font-size: 0.88rem;
+  }
+
+  ul.rules { margin: 0; padding-left: 1.2em; }
+  ul.rules li { margin-bottom: 8px; }
+  .warn { border-left: 3px solid var(--accent); background: var(--soft); padding: 10px 14px; margin-top: 14px; }
+
+  .log-item { padding: 10px 0; border-bottom: 1px dashed var(--line); }
+  .log-item:last-child { border-bottom: none; }
+  .log-head { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; }
+  .log-ver { font-weight: bold; }
+  .log-date { color: var(--muted); font-size: 0.9rem; }
+  .log-item ul { margin: 6px 0 0; padding-left: 1.2em; }
+
+  footer { text-align: center; color: var(--muted); font-size: 0.85rem; margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line); }
+
+  @media (max-width: 560px) {
+    th { width: auto; white-space: normal; }
+    .dl-button { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <!-- ★変更: タイトル -->
+  <h1>Slay the Magic</h1>
+  <!-- ★変更: href="#" の # を ZIP の URL に置き換える -->
+  <a id="zip-link" class="dl-button" href="#" download>ZIP をダウンロード</a>
+</header>
+
+<main class="wrap">
+
+  <!-- ================= 導入方法 ================= -->
+  <section id="install">
+    <h2>導入方法</h2>
+    <p>導入の手順は、下の動画で説明しています。</p>
+    <!-- ★変更: 導入方法の動画。embed/ の後ろを動画IDに差し替える -->
+    <div class="video">
+      <iframe src="https://www.youtube-nocookie.com/embed/D_9Lc4t8W2s"
+        title="Slay the Magic 導入方法" loading="lazy"
+        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <p class="note">うまく起動しない場合は、インスタンスを右クリック → <kbd>フォルダ</kbd> → <kbd>logs</kbd> の中にある <kbd>latest.log</kbd> を添えてご連絡ください。</p>
+  </section>
+
+  <!-- ================= 必要な環境 ================= -->
+  <section id="requirements">
+    <h2>必要な環境</h2>
+    <!-- ★変更: 推奨メモリなどは実際に合わせて調整 -->
+    <table>
+      <tr><th>Minecraft</th><td>Java Edition 1.20.1</td></tr>
+      <tr><th>Mod ローダー</th><td>Forge 47.4.10</td></tr>
+      <tr><th>ランチャー</th><td>Prism Launcher（無料）</td></tr>
+      <tr><th>Java</th><td>Java 17（Prism Launcher が自動で用意します）</td></tr>
+      <tr><th>割り当てメモリ</th><td>8GB 以上を推奨（パソコン本体のメモリは 16GB 以上が目安）</td></tr>
+      <tr><th>その他</th><td>正規版の Minecraft Java Edition のアカウント</td></tr>
+    </table>
+  </section>
+
+  <!-- ================= 動画・チャンネル ================= -->
+  <section id="links">
+    <h2>動画・チャンネル</h2>
+    <div class="links">
+      <!-- ★変更: 第一話の動画。embed/ の後ろが動画ID(youtu.be/ の後ろと同じ文字列) -->
+      <div>
+        <p class="video-title">Slay the Magic 第一話</p>
+        <div class="video">
+          <iframe src="https://www.youtube-nocookie.com/embed/ljr0zIzwfTc"
+            title="Slay the Magic 第一話" loading="lazy"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+      <!-- ★変更: チャンネルの URL -->
+      <a class="link-card" href="https://www.youtube.com/channel/UC4IbPLVIGScpGHLPnbf0vRw" target="_blank" rel="noopener noreferrer">
+        <span>
+          <span class="label">YouTube チャンネル</span>
+          <span class="url">https://www.youtube.com/channel/UC4IbPLVIGScpGHLPnbf0vRw</span>
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ================= 注意事項・利用規約 ================= -->
+  <section id="rules">
+    <h2>注意事項・利用規約</h2>
+    <!-- ★変更: 規約の中身はご自身の方針に合わせて書き換える -->
+    <ul class="rules">
+      <li>この Modpack のうち、作者が作った部分（KubeJS のスクリプトや設定ファイルなど）は、再配布も改変したものの配布も大歓迎です。</li>
+      <li>同梱している他の作者の Mod には、それぞれのライセンスが適用されます。ZIP をそのまま再配布する場合や、改変したものを配布する場合は、各 Mod のライセンスにも従ってください。</li>
+      <li>この Modpack は無料で配布しています。販売や有料での配布はしないでください。同梱している Mod の中に、営利目的での利用を認めていないものがあるためです。</li>
+      <li>この Modpack で遊んだ動画の投稿・配信は自由です。概要欄にこのページか元の動画へのリンクを載せていただけると嬉しいです。</li>
+      <li>同梱されている各 Mod の権利は、それぞれの作者に帰属します。</li>
+      <li>この Modpack は Minecraft の公式製品ではありません。Mojang および Microsoft とは関係ありません。</li>
+      <li>この Modpack の使用によって生じた不具合やデータの損失について、作者は責任を負いません。ワールドのバックアップをこまめに取ってください。</li>
+    </ul>
+    <div class="warn">この Modpack は難易度が非常に高く設定されています。</div>
+  </section>
+
+  <!-- ================= クレジット・ライセンス ================= -->
+  <section id="credits">
+    <h2>クレジット・ライセンス</h2>
+    <p>この Modpack で使っている Mod は、ほとんどを導入時に Prism Launcher が公式の配布元（CurseForge）から自動でダウンロードします。ZIP の中に Mod そのものは入っていません。</p>
+    <p>ただし、次の 3 つの Mod は、作者が Modpack への同梱を認めているため、改変せずに ZIP に同梱しています。それぞれのライセンスに従い、ここに記載します。</p>
+    <ul class="credits">
+      <li><strong>Katters Structures</strong>（作者：Explorer's Eden）<br>
+        <a class="url" href="https://modrinth.com/mod/katters-structures" target="_blank" rel="noopener noreferrer">https://modrinth.com/mod/katters-structures</a></li>
+      <li><strong>DeCubed Dungeons</strong>（旧名：Dungeons+）（作者：technodono）<br>
+        ライセンス：<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank" rel="noopener noreferrer">CC BY-NC-SA 4.0</a><br>
+        <a class="url" href="https://modrinth.com/mod/decubed-dungeons" target="_blank" rel="noopener noreferrer">https://modrinth.com/mod/decubed-dungeons</a></li>
+      <li><strong>Heart Crystals</strong>（作者：n643064）<br>
+        ライセンス：<a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank" rel="noopener noreferrer">GNU GPL v3</a>／ソースコード：<a href="https://github.com/n643064/HeartCrystals" target="_blank" rel="noopener noreferrer">https://github.com/n643064/HeartCrystals</a><br>
+        <a class="url" href="https://modrinth.com/mod/heart-crystals" target="_blank" rel="noopener noreferrer">https://modrinth.com/mod/heart-crystals</a></li>
+    </ul>
+    <p>また、一部の Mod は、ZIP に入っているパッチツールが、遊ぶ人のパソコン上で数値などを書き換えます。ZIP に入っているのは書き換える部分のデータだけで、Mod そのものは含んでいません。</p>
+  </section>
+
+  <!-- ================= 更新履歴 ================= -->
+  <section id="changelog">
+    <h2>更新履歴</h2>
+    <!-- ★変更: 新しい版は一番上に足していく。1件 = <div class="log-item"> 〜 </div> -->
+    <div class="log-item">
+      <div class="log-head"><span class="log-ver">v1.0.0</span><span class="log-date">2026年10月21日</span></div>
+      <ul>
+        <li>初公開。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ★変更: 作者名など -->
+  <footer>© Slay the Magic　／　製作：赤松一
+    <div class="notice-en">NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.</div>
+  </footer>
+</main>
+
+<script>
+  // ZIP の URL がまだ入っていない時は、押しても何も起きないようにして案内を出す
+  (function () {
+    var a = document.getElementById('zip-link');
+    if (!a) return;
+    a.addEventListener('click', function (e) {
+      var href = a.getAttribute('href');
+      if (!href || href === '#') {
+        e.preventDefault();
+        a.textContent = '準備中です';
+        setTimeout(function () { a.textContent = 'ZIP をダウンロード'; }, 1800);
+      }
+    });
+  })();
+</script>
+</body>
+</html>
