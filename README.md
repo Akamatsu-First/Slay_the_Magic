@@ -5,6 +5,15 @@ Minecraft Java Edition 1.20.1（Forge 47.4.10）向けの Modpack です。Prism
 - 配布ページ：https://akamatsu-first.github.io/Slay_the_Magic/
 - ダウンロード：[Releases](https://github.com/Akamatsu-First/Slay_the_Magic/releases)
 
+この辺からダウンロード後の動きを色々と載せる予定。
+
+
+
+
+
+
+
+
 導入の手順、注意事項・利用規約、クレジット・ライセンスは、配布ページをご覧ください。
 
 製作：赤松一
