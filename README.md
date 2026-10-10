@@ -3,7 +3,7 @@
 Minecraft Java Edition 1.20.1（Forge 47.4.10）向けの Modpack です。Prism Launcher で遊ぶことを前提にしています。
 
 - 配布ページ：https://akamatsu-first.github.io/Slay_the_Magic/
-- ダウンロード：[Releases](https://github.com/Akamatsu-First/Slay_the_Magic/releases)
+- Slay the MagicのZIPファイルのダウンロード：[Releases](https://github.com/Akamatsu-First/Slay_the_Magic/releases)
 - Prism Launcherダウンロードページ：https://prismlauncher.org/
 
 ## ゲーム開始までの流れ
