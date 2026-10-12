@@ -21,4 +21,10 @@ Minecraft Java Edition 1.20.1（Forge 47.4.10）向けの Modpack です。Prism
 MacOSやLinuxでもこのゲームを遊べますが、「apply_patches.bat」を動作させるために、事前にPowerShell 7をダウンロードする必要があります。
 詳しい導入の手順、注意事項・利用規約、クレジット・ライセンスは、配布ページをご覧ください。
 
+## ゲーム開始後の注意時点
+
+
+
+
+
 この Modpack は Minecraft の公式製品ではありません。Mojang および Microsoft とは関係ありません。
