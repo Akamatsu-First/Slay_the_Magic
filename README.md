@@ -18,7 +18,7 @@ Minecraft Java Edition 1.20.1（Forge 47.4.10）向けの Modpack です。Prism
 6. **「apply_patches.bat」をダブルクリック。黒い画面に「All done」と出たら成功です。** 何かキーを押すと画面が閉じる。
 7. Prism Launcher のホーム画面に戻り、ゲームを起動する。初めて起動するときは、Minecraft を購入した Microsoft アカウントでのログインを求められる。
 
-**macOS や Linux でも遊べますが、「apply_patches.bat」は Windows 専用です。事前に PowerShell 7 をインストールし、手順 6 の代わりに「apply_patches.ps1」を PowerShell 7 で実行してください。**
+**macOS や Linux でも遊べますが、「apply_patches.bat」は Windows 専用です。**事前に PowerShell 7 をインストールし、手順 6 の代わりに「apply_patches.ps1」を PowerShell 7 で実行してください。
 
 詳しい導入の手順、注意事項・利用規約、クレジット・ライセンスは、配布ページをご覧ください。
 
