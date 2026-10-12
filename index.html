@@ -131,6 +131,11 @@
   ul.rules li { margin-bottom: 8px; }
   .warn { border-left: 3px solid var(--accent); background: var(--soft); padding: 10px 14px; margin-top: 14px; }
 
+  ol.steps, ul.list, ol.seeds { margin: 0 0 12px; padding-left: 1.6em; }
+  ol.steps li, ul.list li { margin-bottom: 8px; }
+  .warn-top { margin: 0 0 14px; font-weight: bold; }
+  h3 { font-size: 1.05rem; margin: 20px 0 8px; }
+
   .log-item { padding: 10px 0; border-bottom: 1px dashed var(--line); }
   .log-item:last-child { border-bottom: none; }
   .log-head { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; }
@@ -161,7 +166,6 @@
   <section id="install">
     <h2>導入方法</h2>
     <p>導入の手順は、下の動画で説明しています。</p>
-    <p class="note">ZIP を取り込んだあと、最初に起動する前に一度だけ、インスタンスのフォルダ（右クリック → <kbd>フォルダ</kbd>）にある <kbd>stm_patcher</kbd> を開き、<kbd>apply_patches.bat</kbd> をダブルクリックしてください。「All done」と出たら準備完了です。これを行わないと、ゲームが起動直後に終了します。</p>
     <!-- ★変更: 導入方法の動画。embed/ の後ろを動画IDに差し替える -->
     <div class="video">
       <iframe src="https://www.youtube-nocookie.com/embed/D_9Lc4t8W2s"
@@ -169,6 +173,17 @@
         allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
+    <div class="warn warn-top">以下の 1〜7 の手順を必ず行ってください。手順を飛ばすと、ゲームの起動時やネザーに入ったときにクラッシュします。</div>
+    <ol class="steps">
+      <li>このページの一番上にある「ZIP をダウンロード」から Slay the Magic の ZIP ファイルを、<a href="https://prismlauncher.org/" target="_blank" rel="noopener noreferrer">Prism Launcher の公式サイト</a>から Prism Launcher をダウンロードする。ZIP ファイルは解凍しなくてよい。</li>
+      <li>Prism Launcher を開いたら右クリック →「起動構成の作成」を選択。</li>
+      <li>画面左側の「インポート」を選択 → 右側に現れる「参照」をクリック → Slay the Magic の ZIP ファイルを開く。Mod を手動でダウンロードするよう求める画面が出た場合は、その表示に従う。</li>
+      <li>Prism Launcher のホーム画面に Slay the Magic の起動構成が現れるので、それを右クリック →「フォルダ」を選択。</li>
+      <li>「minecraft」→「stm_patcher」をダブルクリック。</li>
+      <li><strong>「apply_patches.bat」をダブルクリック。黒い画面に「All done」と出たら成功です。</strong>何かキーを押すと画面が閉じる。</li>
+      <li>Prism Launcher のホーム画面に戻り、ゲームを起動する。初めて起動するときは、Minecraft を購入した Microsoft アカウントでのログインを求められる。</li>
+    </ol>
+    <p>macOS や Linux でも遊べますが、「apply_patches.bat」は Windows 専用です。事前に PowerShell 7 をインストールし、手順 6 の代わりに「apply_patches.ps1」を PowerShell 7 で実行してください。</p>
     <p class="note">うまく起動しない場合は、インスタンスを右クリック → <kbd>フォルダ</kbd> → <kbd>logs</kbd> の中にある <kbd>latest.log</kbd> を添えてご連絡ください。</p>
   </section>
 
@@ -184,6 +199,42 @@
       <tr><th>割り当てメモリ</th><td>8GB 以上を推奨（パソコン本体のメモリは 16GB 以上が目安）</td></tr>
       <tr><th>その他</th><td>正規版の Minecraft Java Edition のアカウント</td></tr>
     </table>
+  </section>
+
+  <!-- ================= ゲーム開始後の注意点 ================= -->
+  <section id="tips">
+    <h2>ゲーム開始後の注意点</h2>
+    <div class="warn warn-top">このゲームは非常に難易度が高く設定されています。</div>
+    <p>戦闘や探索で手に入れた物を定期的に失うことになります。そのストレスに耐えられる方、またはそれを楽しめる方に向けて作っています。あらかじめご了承ください。</p>
+    <p>また、ほぼすべてのバイオームの気温と水温を、設定（config）でかなり極端にしています。そのため、最初のリスポーン地点が高熱地帯、氷雪地帯、または小さな島だった場合、死んでは戻るを繰り返すだけの、先に進めないワールドになる可能性が高いです。平原から始まるシード値が出るまでワールドを作り直すか、平原から始まる以下のシード値をご活用ください。</p>
+    <!-- ★変更: <li></li> の間にシード値を書く -->
+    <ol class="seeds">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ol>
+  </section>
+
+  <!-- ================= ボスの討伐順 ================= -->
+  <section id="bosses">
+    <h2>ボスの討伐順</h2>
+    <div class="warn warn-top">このゲームには合計 20 体のボスがいます。おすすめの討伐順を以下に載せています。</div>
+    <p>この順番どおりでなくてもクリアはできますが、各ボスの強さの目安になると思いますので、ぜひご活用ください。かっこ内は、そのボスがいる場所、または現れる場所です。下の行ほど強く、同じ行の中では右にいくほど強くなります。</p>
+    <ul class="list">
+      <li>デイムフォルトゥナ（廃村）／スワンプ・ジョー（高度 100 以上の高山）／エルダー・ガーディアン（海底神殿）</li>
+      <li>ベルリンガー（湿地帯）／ロザリン（青色の森）／オーバーガーディアン（砂漠）／ネザライトの怪物（黒い工場）</li>
+      <li>ウィザー（ネザー要塞）／ヴォイド・ブロッサム（繁茂した平原）／ハービンジャー（地下研究所）</li>
+      <li>ストーカー（ネザー全域）／リヴァイアサン（深海都市）／エンシェント・レムナント（呪いのピラミッド）／イグニス（炎の闘技場）／マレディクタス（凍りついた城）</li>
+      <li>スキュラ（氷雪地帯）／ロード・パンプキン・ヘッド（臓腑の溜まり場）／ウォーデン（冷たい砂漠）／エンダードラゴン（エンド本島）</li>
+      <li>???（エンダードラゴンを倒した後、ブラッドムーンの夜に、巨大な切り株）</li>
+    </ul>
   </section>
 
   <!-- ================= 動画・チャンネル ================= -->
