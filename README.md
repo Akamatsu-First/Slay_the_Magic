@@ -60,6 +60,62 @@ Minecraft Java Edition 1.20.1（Forge 47.4.10）向けの Modpack です。Prism
 
 同梱している他の作者の Mod には、それぞれのライセンスが適用されます。この Modpack に別の Mod を加えて新しい Modpack として配布する場合は、加えた Mod のライセンスにも従ってください。
 
+## LGPL の Mod に加えた変更の公開
+
+以下の 3 つの Mod は LGPL で公開されているため、ライセンスに従って、この Modpack で加えた変更をすべてここに公開します。
+
+変更は、ZIP に入っているパッチツール（stm_patcher）が、プレイヤーのパソコンにある公式のファイルに対して行います。ここに書いた箇所以外は、公式のファイルから変えていません。
+
+コードは、変更したクラスファイルを Java のソースコードに戻して表示したものです（名前の一部は、読みやすいように元の名前に置き換えています）。
+
+### Cataclysm: Spellbooks
+
+- 対象のファイル：`cataclysm_spellbooks-1.2.7-1.20.1-all.jar`
+- ライセンス：LGPL 2.1（GNU Lesser General Public License v2.1）
+- 公式のソースコード：https://github.com/AceTheEldritchKing/Cataclysm_Spellbooks
+- 変更点：下の表のとおり
+
+| クラス | 変更前 | 変更後 | 内容 |
+|---|---|---|---|
+| `spells/abyssal/AbyssalSlashSpell` | `radius = 4.1f` | `radius = 8.2f` | Abyssal Slash の攻撃範囲を 2 倍にする |
+| `spells/blood/FinalRendSpell` | `radius = 3.25f` | `radius = 6.5f` | Final Rend の攻撃範囲を 2 倍にする |
+| `spells/blood/FinalRendSpell` | 画面の揺れの強さ `0.08f` | `0.0f` | Final Rend の画面の揺れをなくす |
+| `spells/ice/CryopiercerSpell` | 再詠唱の受付時間 `200` | `66` | Cryopiercer の再詠唱できる時間を 10 秒から約 3.3 秒にする |
+| `spells/ice/CryopiercerSpell` | `setFreezeTicks(200)` | `setFreezeTicks(66)` | Cryopiercer で凍える時間を 10 秒から約 3.3 秒にする |
+| `entity/spells/bullets/FrozenBulletProjectile` | `setDuration(300)` | `setDuration(40)` | 氷の塊に閉じ込める時間を 15 秒から 2 秒にする |
+
+（クラスはすべて `net/acetheeldritchking/cataclysm_spellbooks/` の下にあります）
+
+### YUNG's Better End Island
+
+- 対象のファイル：`YungsBetterEndIsland-1.20-Forge-2.0.6.jar`
+- ライセンス：LGPL 3.0（GNU Lesser General Public License v3.0）
+- 公式のソースコード：https://github.com/yungnickyoung/YUNGs-Better-End-Island
+- 変更点：`com/yungnickyoung/minecraft/betterendisland/mixin/EndDragonFightMixin` の `betterendisland_tickFight`
+- 内容：エンダードラゴンの体力バーを常に表示しないようにする
+
+```java
+// 変更前
+this.dragonEvent.setVisible(!this.dragonKilled && this.betterendisland$hasDragonEverSpawned);
+// 変更後
+this.dragonEvent.setVisible(!this.dragonKilled && this.betterendisland$hasDragonEverSpawned ? false : false);
+```
+
+### The Twilight Forest
+
+- 対象のファイル：`twilightforest-1.20.1-4.3.2508-universal.jar`
+- ライセンス：LGPL 2.1（コード部分）
+- 公式のソースコード：https://github.com/TeamTwilight/twilightforest
+- 変更点：`twilightforest/entity/projectile/SeekerArrow` の 2 つのコンストラクタ
+- 内容：Seeker Bow の矢の基本ダメージを 1.0 から 6.0 にする
+
+```java
+// 変更前
+this.setBaseDamage(1.0);
+// 変更後
+this.setBaseDamage(6.0);
+```
+
 ---
 
 この Modpack は Minecraft の公式製品ではありません。Mojang および Microsoft とは関係ありません。
