@@ -54,6 +54,17 @@ Minecraft Java Edition 1.20.1（Forge 47.4.10）向けの Modpack です。Prism
 - スキュラ（氷雪地帯）／ロード・パンプキン・ヘッド（臓腑の溜まり場）／ウォーデン（冷たい砂漠）／エンダードラゴン（エンド本島）
 - ???（エンダードラゴンを倒した後、ブラッドムーンの夜に、巨大な切り株）
 
+## 動画本編とは異なる要素
+**動画内で紹介された仕様の内、以下に挙げるものに関しては、その仕様に関わるMOD作者様の権利に侵害する恐れを避けるため、このModpack内には導入しておりません。**
+| クラス | 変更前 | 変更後 | 内容 |
+|---|---|---|---|
+| `spells/abyssal/AbyssalSlashSpell` | `radius = 4.1f` | `radius = 8.2f` | Abyssal Slash の攻撃範囲を 2 倍にする |
+| `spells/blood/FinalRendSpell` | `radius = 3.25f` | `radius = 6.5f` | Final Rend の攻撃範囲を 2 倍にする |
+| `spells/blood/FinalRendSpell` | 画面の揺れの強さ `0.08f` | `0.0f` | Final Rend の画面の揺れをなくす |
+| `spells/ice/CryopiercerSpell` | 再詠唱の受付時間 `200` | `66` | Cryopiercer の再詠唱できる時間を 10 秒から約 3.3 秒にする |
+| `spells/ice/CryopiercerSpell` | `setFreezeTicks(200)` | `setFreezeTicks(66)` | Cryopiercer で凍える時間を 10 秒から約 3.3 秒にする |
+| `entity/spells/bullets/FrozenBulletProjectile` | `setDuration(300)` | `setDuration(40)` | 氷の塊に閉じ込める時間を 15 秒から 2 秒にする |
+
 ## 再配布・改変について
 
 **この Modpack のうち、作者が作った部分（KubeJS のスクリプトや設定ファイルなど）は、再配布も、改変したものの配布も大歓迎です。**
