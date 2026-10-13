@@ -126,6 +126,25 @@ this.setBaseDamage(1.0);
 this.setBaseDamage(6.0);
 ```
 
+
+## クレジット・ライセンス
+
+この Modpack で使っている Mod は、ほとんどを導入時に Prism Launcher が公式の配布元（CurseForge）から自動でダウンロードします。ZIP の中に Mod そのものは入っていません。
+
+ただし次の 3 つの Mod は、作者が Modpack への同梱を認めているため改変せずに ZIP に同梱しています。それぞれのライセンスに従いここに記載します。
+
+- **Katters Structures**（作者：Explorer's Eden）
+  - https://modrinth.com/mod/katters-structures
+- **DeCubed Dungeons**（旧名：Dungeons+）（作者：technodono）
+  - ライセンス：[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja)
+  - https://modrinth.com/mod/decubed-dungeons
+- **Heart Crystals**（作者：n643064）
+  - ライセンス：[GNU GPL v3](https://www.gnu.org/licenses/gpl-3.0.html)
+  - ソースコード：https://github.com/n643064/HeartCrystals
+  - https://modrinth.com/mod/heart-crystals
+
+また一部の Mod に関して、ZIP に入っているパッチツールが遊ぶ人のパソコン上で数値などを書き換えます。ZIP に入っているのは書き換える部分のデータだけで、Mod そのものは含んでいません。
+
 ---
 
 この Modpack は Minecraft の公式製品ではありません。Mojang および Microsoft とは関係ありません。
