@@ -58,15 +58,15 @@ Minecraft Java Edition 1.20.1（Forge 47.4.10）向けの Modpack です。Prism
 
 **この Modpack のうち、作者が作った部分（KubeJS のスクリプトや設定ファイルなど）は、再配布も、改変したものの配布も大歓迎です。**
 
-同梱している他の作者の Mod には、それぞれのライセンスが適用されます。この Modpack に別の Mod を加えて新しい Modpack として配布する場合は、加えた Mod のライセンスにも従ってください。
+同梱している他の作者のModには、それぞれのライセンスが適用されます。このModpackに別のModを加えて新しいModpackとして配布する場合は、加えたModのライセンスにも従ってください。
 
-## LGPL の Mod に加えた変更の公開
+## LGPLのModに加えた変更の公開
 
-以下の 3 つの Mod は LGPL で公開されているため、ライセンスに従って、この Modpack で加えた変更をすべてここに公開します。
+以下の3つのModはLGPLで公開されているため、ライセンスに従ってこのModpack内で加えた変更をすべてここに公開します。
 
-変更は、ZIP に入っているパッチツール（stm_patcher）が、プレイヤーのパソコンにある公式のファイルに対して行います。ここに書いた箇所以外は、公式のファイルから変えていません。
+これらの変更に関してZIPに入っているパッチツール（stm_patcher）が、プレイヤーのパソコンにある公式のファイルに対して行います。ここに書いた箇所以外は公式のファイルから変えていません。
 
-コードは、変更したクラスファイルを Java のソースコードに戻して表示したものです（名前の一部は、読みやすいように元の名前に置き換えています）。
+下記のコードは、変更したクラスファイルをJavaのソースコードに戻して表示したものです（名前の一部は、読みやすいように元の名前に置き換えています）。
 
 ### Cataclysm: Spellbooks
 
@@ -92,7 +92,7 @@ Minecraft Java Edition 1.20.1（Forge 47.4.10）向けの Modpack です。Prism
 - ライセンス：LGPL 3.0（GNU Lesser General Public License v3.0）
 - 公式のソースコード：https://github.com/yungnickyoung/YUNGs-Better-End-Island
 - 変更点：`com/yungnickyoung/minecraft/betterendisland/mixin/EndDragonFightMixin` の `betterendisland_tickFight`
-- 内容：エンダードラゴンの体力バーを常に表示しないようにする
+- 内容：本家のエンダードラゴンの体力バーを常に表示しないようにする
 
 ```java
 // 変更前
