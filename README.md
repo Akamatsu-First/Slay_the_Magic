@@ -2,7 +2,6 @@
 
 Minecraft Java Edition 1.20.1（Forge 47.4.10）向けの Modpack です。Prism Launcher で遊ぶことを前提にしています。
 
-- 配布ページ：https://akamatsu-first.github.io/Slay_the_Magic/
 - Slay the Magic の ZIP ファイルのダウンロード：[Releases](https://github.com/Akamatsu-First/Slay_the_Magic/releases)
 - Prism Launcher のダウンロードページ：https://prismlauncher.org/
 
@@ -23,8 +22,6 @@ Minecraft Java Edition 1.20.1（Forge 47.4.10）向けの Modpack です。Prism
 7. Prism Launcher のホーム画面に戻り、ゲームを起動する。初めて起動するときは、Minecraft を購入した Microsoft アカウントでのログインを求められる。
 
 **macOS や Linux でも遊べますが、「apply_patches.bat」は Windows 専用です。**　事前に PowerShell 7 をインストールし、手順 6 の代わりに「apply_patches.ps1」を PowerShell 7 で実行してください。
-
-詳しい導入の手順、注意事項・利用規約、クレジット・ライセンスは、配布ページをご覧ください。
 
 ## ゲーム開始後の注意点
 
@@ -151,6 +148,17 @@ this.setBaseDamage(6.0);
   - https://modrinth.com/mod/heart-crystals
 
 また一部の Mod に関して、ZIP に入っているパッチツールが遊ぶ人のパソコン上で数値などを書き換えます。ZIP に入っているのは書き換える部分のデータだけで、Mod そのものは含んでいません。
+
+
+## 注意事項・利用規約
+
+- この Modpack の内、作者が作った部分（KubeJS のスクリプトや設定ファイルなど）は、再配布も改変したものの配布も大歓迎です。
+- 同梱している他の作者の Mod にはそれぞれのライセンスが適用されます。ZIP をそのまま再配布する場合や、改変したものを配布する場合は、各 Mod のライセンスにも従ってください。
+- この Modpack は無料で配布しています。販売や有料での配布はしないでください。同梱している Mod の中に、営利目的での利用を認めていないものがあるためです。
+- この Modpack で遊んだ動画の投稿・配信は自由です。概要欄にこのページか元の動画へのリンクを載せていただけると嬉しいです。
+- 同梱されている各 Mod の権利はそれぞれの作者に帰属します。
+- この Modpack は Minecraft の公式製品ではありません。Mojang および Microsoft とは関係ありません。
+- この Modpack の使用によって生じた不具合やデータの損失について作者は責任を負いません。ワールドのバックアップをこまめに取ってください。
 
 ---
 
