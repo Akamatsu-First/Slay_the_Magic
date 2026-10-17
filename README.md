@@ -81,20 +81,39 @@ Minecraft Java Edition 1.20.1（Forge 47.4.10）向けで、Prism Launcher で�
 - 一部のボスの能力値が動画とは異なります。
 - 一部の魔法の挙動が動画とは異なります。
 
-## LGPLのModに加えた変更の公開
+## Modに加えた変更
 
-以下の3つのModはLGPLで公開されているため、ライセンスに従い、このModpackで加えた変更をすべてここに公開します。
+このModpackでは、以下の6つのModの一部を変更しています。どこをどのように変えたかを、すべてここに公開します（LGPLで公開されているModについては、ライセンスでも公開が求められています）。
 
-変更は、ZIPに入っているパッチツール（stm_patcher）が、プレイヤーのパソコンにある公式のファイルに対して行います。ここに書いた箇所以外は、公式のファイルから変えていません。
+変更は、ZIPに入っているパッチツール（stm_patcher）が、プレイヤーのパソコンにある公式のファイルに対して行います。ZIPに入っているのは書き換える部分のデータだけで、Modそのものは含んでいません。ここに書いた箇所以外は、公式のファイルから変えていません。
 
-下のコードは、変更したクラスファイルをJavaのソースコードに戻して表示したものです（名前の一部は、読みやすいように元の名前に置き換えています）。
+コードは、変更したクラスファイルをJavaのソースコードに戻して表示したものです（名前の一部は、読みやすいように元の名前に置き換えています）。
+
+### Bloodmoon Update
+
+- 対象のファイル：`bloodmoon-1.20.1-1.4.1-forge-1.20.1.jar`
+- ライセンス：MIT
+- 配布ページ：https://www.curseforge.com/minecraft/mc-mods/bloodmoon-update
+- 変更点：下の表のとおり
+
+| クラス | 変更前 | 変更後 | 内容 |
+|---|---|---|---|
+| `BloodmoonManagerProcedure` の `onWorldTick` | （なし） | 先頭に「オーバーワールド以外なら何もしない」処理を追加 | ブラッドムーンの進行を、オーバーワールドだけで行う |
+| `graphics/RedOverlayRenderProcedure` | 描く位置 `"hotbar"`、通常の描き方 | 描く位置 `"vignette"`、画面効果用の描き方 | 赤い画面の効果が、体力などの表示の上に重ならないようにする |
+| `mobs/ArmorDurabilityAmplifier` | `Math.random() < 0.005` | `Math.random() < 0.0` | 防具の耐久値を一度に大きく削る効果をなくす |
+| `mobs/WeaponDurabilityAmplifier` | `Math.random() < 0.05` | `Math.random() < 0.0` | 武器の耐久値を一度に大きく削る効果をなくす |
+| `mobs/MobSpawnRateProcedure` の `onPlayerTick` | 毎tick 追加のMOBを出す処理を呼ぶ | 中身を空にする | ブラッドムーン中の追加の湧きを止める（KubeJS で作り直している） |
+| `mobs/SqueletonArrowsProcedure` の `onEntityTick` | 毎tick スケルトンの追加の矢の処理を呼ぶ | 中身を空にする | スケルトンの追加の矢を止める（KubeJS で作り直している） |
+| `mobs/MobsArmorRateProcedure` の `execute` | 防具・武器を持たせるだけ | 持たせた直後に、落とす確率を 0 にする処理を追加 | ブラッドムーンのMOBが持つ装備を、倒しても落とさないようにする |
+
+（クラスはすべて `net/foufakirby/bloodmoon/procedures/` の下にあります）
 
 ### Cataclysm: Spellbooks
 
 - 対象のファイル：`cataclysm_spellbooks-1.2.7-1.20.1-all.jar`
 - ライセンス：LGPL 2.1（GNU Lesser General Public License v2.1）
 - 公式のソースコード：https://github.com/AceTheEldritchKing/Cataclysm_Spellbooks
-- 変更点：下の表のとおり
+- 変更点：下の表のとおり（どれも数値の変更だけです）
 
 | クラス | 変更前 | 変更後 | 内容 |
 |---|---|---|---|
@@ -106,6 +125,22 @@ Minecraft Java Edition 1.20.1（Forge 47.4.10）向けで、Prism Launcher で�
 | `entity/spells/bullets/FrozenBulletProjectile` | `setDuration(300)` | `setDuration(40)` | 氷の塊に閉じ込める時間を 15 秒から 2 秒にする |
 
 （クラスはすべて `net/acetheeldritchking/cataclysm_spellbooks/` の下にあります）
+
+### Too Many Bows
+
+- 対象のファイル：`too_many_bows-forge-3.8.0.jar`
+- ライセンス：MIT（jar 内の表記）
+- 配布ページ：https://www.curseforge.com/minecraft/mc-mods/too-many-bows
+- 変更点：下の表のとおり（どれも数値の変更だけです）
+
+| クラス | 変更前 | 変更後 | 内容 |
+|---|---|---|---|
+| `entity/IcicleJavelin` | `setBaseDamage(7.0)` | `setBaseDamage(17.0)` | 氷の投げ槍の基本ダメージを 10 上げる |
+| `item/IcicleJavelinBow` | `BASE_DAMAGE = 3.0` | `BASE_DAMAGE = 13.0` | 同じく、弓側で設定する基本ダメージを 10 上げる |
+| `item/IcicleJavelinBow` | `setBaseDamage(3.0 + 射撃ダメージ増加のレベル × 0.5)` | `setBaseDamage(13.0 + 射撃ダメージ増加のレベル × 0.5)` | 射撃ダメージ増加が付いているときも 10 上げる |
+| `entity/SonicBoomProjectile` | ダメージ `20.0f` | ダメージ `36.0f` | ソニックブームのダメージを 20 から 36 にする |
+
+（クラスはすべて `net/bandit/many_bows/` の下にあります）
 
 ### YUNG's Better End Island
 
@@ -136,6 +171,27 @@ this.setBaseDamage(1.0);
 // 変更後
 this.setBaseDamage(6.0);
 ```
+
+### The Trembling Earth
+
+- 対象のファイル：`The_Trembling_Earth-M5.0_hotfix(1.20.1).jar`
+- ライセンス：表記なし
+- 配布ページ：https://www.curseforge.com/minecraft/mc-mods/the-trembling-earth
+- 目的：地震や崩落の処理が、まだ読み込まれていない地形を読み込もうとしてサーバーが止まる問題を防ぐ。あわせて、地震と崩落をオーバーワールドだけで起こるようにする。
+- 地震・崩落の計算式、確率、ブロックの置き換え方は変えていません。
+
+変更点（クラスはすべて `net/mcreator/thetremblingearth/procedures/` の下にあります）
+
+1. **新しいクラス `StmChunkGuard` を追加**（このModpackで作ったクラスで、公式のファイルにはありません）
+   - 調べようとした場所の周り（前後左右 8 ブロック）の地形が読み込み済みかを確かめます。
+   - 読み込み済みなら、元と同じようにブロックや高さを返します。
+   - 読み込まれていなければ、地形を読み込まずに「空気」「何もない」「高さ -100000」を返し、その場所の処理を事実上飛ばします。
+2. **`BlockQuakingProcedure` と `CollapseTriggerProcedure` の `onWorldTick`**
+   - 先頭に「オーバーワールド以外なら何もしない」処理を追加しました。
+3. **`BlockQuakingProcedure`・`CollapseProcedure`・`CollapseTriggerProcedure` の、地形を調べる処理**
+   - `world.getBlockState(pos)` を `StmChunkGuard.state(world, pos)` に置き換え（127 か所）
+   - `world.isEmptyBlock(pos)` を `StmChunkGuard.empty(world, pos)` に置き換え（13 か所）
+   - `world.getHeight(type, x, z)` を `StmChunkGuard.height(world, type, x, z)` に置き換え（5 か所）
 
 ## クレジット・ライセンス
 
