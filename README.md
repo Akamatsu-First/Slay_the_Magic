@@ -179,21 +179,83 @@ this.setBaseDamage(6.0);
 - ライセンス：[Academic Free License 3.0](https://opensource.org/license/AFL-3.0)（CurseForge の配布ページの表記）
 - 配布ページ：https://www.curseforge.com/minecraft/mc-mods/the-trembling-earth
 - ライセンスの表示：The Trembling Earth is licensed under the Academic Free License version 3.0. このModpackでは、下に書いた箇所を赤松一が変更しています。変更後の部分にも、同じライセンスの条件が適用されます。
-- 目的：地震や崩落の処理が、まだ読み込まれていない地形を読み込もうとしてサーバーが止まる問題を防ぐ。あわせて、地震と崩落をオーバーワールドだけで起こるようにする。
-- 地震・崩落の計算式、確率、ブロックの置き換え方は変えていません。
+- 変更点：下の表のとおり（地震・崩落の計算式、確率、ブロックの置き換え方は変えていません）
 
-変更点（クラスはすべて `net/mcreator/thetremblingearth/procedures/` の下にあります）
+| クラス | 変更前 | 変更後 | 内容 |
+|---|---|---|---|
+| `BlockQuakingProcedure` の `onWorldTick` | （なし） | 先頭に「オーバーワールド以外なら何もしない」処理を追加 | 地震をオーバーワールドだけで起こす |
+| `CollapseTriggerProcedure` の `onWorldTick` | （なし） | 先頭に「オーバーワールド以外なら何もしない」処理を追加 | 崩落をオーバーワールドだけで起こす |
+| `BlockQuakingProcedure`・`CollapseProcedure`・`CollapseTriggerProcedure` | `world.getBlockState(pos)` | `StmChunkGuard.state(world, pos)` | 地形を調べる処理を置き換え（127 か所） |
+| 同上 | `world.isEmptyBlock(pos)` | `StmChunkGuard.empty(world, pos)` | 同上（13 か所） |
+| 同上 | `world.getHeight(type, x, z)` | `StmChunkGuard.height(world, type, x, z)` | 同上（5 か所） |
+| `StmChunkGuard`（新しいクラス） | （なし） | このModpackで追加 | まだ読み込まれていない地形を調べようとしたときに、読み込みを待ってサーバーが止まるのを防ぐ |
 
-1. **新しいクラス `StmChunkGuard` を追加**（このModpackで作ったクラスで、公式のファイルにはありません）
-   - 調べようとした場所の周り（前後左右 8 ブロック）の地形が読み込み済みかを確かめます。
-   - 読み込み済みなら、元と同じようにブロックや高さを返します。
-   - 読み込まれていなければ、地形を読み込まずに「空気」「何もない」「高さ -100000」を返し、その場所の処理を事実上飛ばします。
-2. **`BlockQuakingProcedure` と `CollapseTriggerProcedure` の `onWorldTick`**
-   - 先頭に「オーバーワールド以外なら何もしない」処理を追加しました。
-3. **`BlockQuakingProcedure`・`CollapseProcedure`・`CollapseTriggerProcedure` の、地形を調べる処理**
-   - `world.getBlockState(pos)` を `StmChunkGuard.state(world, pos)` に置き換え（127 か所）
-   - `world.isEmptyBlock(pos)` を `StmChunkGuard.empty(world, pos)` に置き換え（13 か所）
-   - `world.getHeight(type, x, z)` を `StmChunkGuard.height(world, type, x, z)` に置き換え（5 か所）
+（クラスはすべて `net/mcreator/thetremblingearth/procedures/` の下にあります）
+
+```java
+// onWorldTick の先頭に追加した処理（BlockQuakingProcedure・CollapseTriggerProcedure）
+if (!event.level.dimension().equals(Level.OVERWORLD)) {
+    return;
+}
+```
+
+```java
+// 置き換えの例（BlockQuakingProcedure）
+// 変更前
+if (world.getBlockState(BlockPos.containing(tx, ty, tz)).is(BlockTags.create(new ResourceLocation("minecraft:logs")))) {
+// 変更後
+if (StmChunkGuard.state(world, BlockPos.containing(tx, ty, tz)).is(BlockTags.create(new ResourceLocation("minecraft:logs")))) {
+```
+
+```java
+// 追加したクラス StmChunkGuard（全文）
+// 調べる場所の周り（前後左右 8 ブロック）が読み込み済みなら元と同じ値を返し、
+// 読み込まれていなければ地形を読み込まずに「空気」「何もない」「高さ -100000」を返して、その場所の処理を飛ばす
+package net.mcreator.thetremblingearth.procedures;
+
+public final class StmChunkGuard {
+    public static final int MARGIN = 8;
+    public static final int SKIP_Y = -100000;
+
+    private StmChunkGuard() {
+    }
+
+    private static boolean areaReady(ServerChunkCache cache, int x, int z) {
+        return cache.getChunkNow(x - 8 >> 4, z - 8 >> 4) != null
+            && cache.getChunkNow(x + 8 >> 4, z - 8 >> 4) != null
+            && cache.getChunkNow(x - 8 >> 4, z + 8 >> 4) != null
+            && cache.getChunkNow(x + 8 >> 4, z + 8 >> 4) != null;
+    }
+
+    public static boolean ready(LevelAccessor world, int x, int z) {
+        if (world instanceof ServerLevel) {
+            return areaReady(((ServerLevel) world).getChunkSource(), x, z);
+        }
+        return true;
+    }
+
+    public static int height(LevelAccessor world, Heightmap.Types type, int x, int z) {
+        if (!ready(world, x, z)) {
+            return -100000;
+        }
+        return world.getHeight(type, x, z);
+    }
+
+    public static BlockState state(LevelAccessor world, BlockPos pos) {
+        if (!ready(world, pos.getX(), pos.getZ())) {
+            return Blocks.AIR.defaultBlockState();
+        }
+        return world.getBlockState(pos);
+    }
+
+    public static boolean empty(LevelAccessor world, BlockPos pos) {
+        if (!ready(world, pos.getX(), pos.getZ())) {
+            return true;
+        }
+        return world.isEmptyBlock(pos);
+    }
+}
+```
 
 ## クレジット・ライセンス
 
