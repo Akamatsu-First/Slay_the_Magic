@@ -175,8 +175,10 @@ this.setBaseDamage(6.0);
 ### The Trembling Earth
 
 - 対象のファイル：`The_Trembling_Earth-M5.0_hotfix(1.20.1).jar`
-- ライセンス：表記なし
+- 作者：victo
+- ライセンス：[Academic Free License 3.0](https://opensource.org/license/AFL-3.0)（CurseForge の配布ページの表記）
 - 配布ページ：https://www.curseforge.com/minecraft/mc-mods/the-trembling-earth
+- ライセンスの表示：The Trembling Earth is licensed under the Academic Free License version 3.0. このModpackでは、下に書いた箇所を赤松一が変更しています。変更後の部分にも、同じライセンスの条件が適用されます。
 - 目的：地震や崩落の処理が、まだ読み込まれていない地形を読み込もうとしてサーバーが止まる問題を防ぐ。あわせて、地震と崩落をオーバーワールドだけで起こるようにする。
 - 地震・崩落の計算式、確率、ブロックの置き換え方は変えていません。
 
