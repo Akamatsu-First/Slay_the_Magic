@@ -83,9 +83,9 @@ Minecraft Java Edition 1.20.1（Forge 47.4.10）向けで、Prism Launcher で�
 
 ## Modに加えた変更
 
-このModpackでは、以下の6つのModの一部を変更しています。どこをどのように変えたかを、すべてここに公開します（LGPLで公開されているModについては、ライセンスでも公開が求められています）。
+このModpackでは以下の6つのModの一部を変更しています。どこをどのように変えたかを、すべてここに公開します（LGPLで公開されているModについては、ライセンスでも公開が求められています）。
 
-変更は、ZIPに入っているパッチツール（stm_patcher）が、プレイヤーのパソコンにある公式のファイルに対して行います。ZIPに入っているのは書き換える部分のデータだけで、Modそのものは含んでいません。ここに書いた箇所以外は、公式のファイルから変えていません。
+変更は、ZIPに入っているパッチツール（stm_patcher）が、プレイヤーのパソコンにある公式のファイルに対して行います。ZIPに入っているのは書き換える部分のデータだけで、Modそのものは含んでいません。ここに書いた箇所以外は公式のファイルから変えていません。
 
 コードは、変更したクラスファイルをJavaのソースコードに戻して表示したものです（名前の一部は、読みやすいように元の名前に置き換えています）。
 
@@ -98,13 +98,13 @@ Minecraft Java Edition 1.20.1（Forge 47.4.10）向けで、Prism Launcher で�
 
 | クラス | 変更前 | 変更後 | 内容 |
 |---|---|---|---|
-| `BloodmoonManagerProcedure` の `onWorldTick` | （なし） | 先頭に「オーバーワールド以外なら何もしない」処理を追加 | ブラッドムーンの進行を、オーバーワールドだけで行う |
-| `graphics/RedOverlayRenderProcedure` | 描く位置 `"hotbar"`、通常の描き方 | 描く位置 `"vignette"`、画面効果用の描き方 | 赤い画面の効果が、体力などの表示の上に重ならないようにする |
+| `BloodmoonManagerProcedure` の `onWorldTick` | （なし） | 先頭に「オーバーワールド以外なら何もしない」処理を追加 | ブラッドムーンの進行をオーバーワールドだけで行う |
+| `graphics/RedOverlayRenderProcedure` | 描く位置 `"hotbar"`、通常の描き方 | 描く位置 `"vignette"`、画面効果用の描き方 | 赤い画面の効果が体力などの表示の上に重ならないようにする |
 | `mobs/ArmorDurabilityAmplifier` | `Math.random() < 0.005` | `Math.random() < 0.0` | 防具の耐久値を一度に大きく削る効果をなくす |
 | `mobs/WeaponDurabilityAmplifier` | `Math.random() < 0.05` | `Math.random() < 0.0` | 武器の耐久値を一度に大きく削る効果をなくす |
 | `mobs/MobSpawnRateProcedure` の `onPlayerTick` | 毎tick 追加のMOBを出す処理を呼ぶ | 中身を空にする | ブラッドムーン中の追加の湧きを止める（KubeJS で作り直している） |
 | `mobs/SqueletonArrowsProcedure` の `onEntityTick` | 毎tick スケルトンの追加の矢の処理を呼ぶ | 中身を空にする | スケルトンの追加の矢を止める（KubeJS で作り直している） |
-| `mobs/MobsArmorRateProcedure` の `execute` | 防具・武器を持たせるだけ | 持たせた直後に、落とす確率を 0 にする処理を追加 | ブラッドムーンのMOBが持つ装備を、倒しても落とさないようにする |
+| `mobs/MobsArmorRateProcedure` の `execute` | 防具・武器を持たせるだけ | 持たせた直後に落とす確率を 0 にする処理を追加 | ブラッドムーンのMOBが持つ装備を倒しても落とさないようにする |
 
 （クラスはすべて `net/foufakirby/bloodmoon/procedures/` の下にあります）
 
@@ -178,7 +178,7 @@ this.setBaseDamage(6.0);
 - 作者：victo
 - ライセンス：[Academic Free License 3.0](https://opensource.org/license/AFL-3.0)（CurseForge の配布ページの表記）
 - 配布ページ：https://www.curseforge.com/minecraft/mc-mods/the-trembling-earth
-- ライセンスの表示：The Trembling Earth is licensed under the Academic Free License version 3.0. このModpackでは、下に書いた箇所を赤松一が変更しています。変更後の部分にも、同じライセンスの条件が適用されます。
+- ライセンスの表示：The Trembling Earth is licensed under the Academic Free License version 3.0. このModpackでは、下に書いた箇所を変更しています。変更後の部分にも、同じライセンスの条件が適用されます。
 - 変更点：下の表のとおり（地震・崩落の計算式、確率、ブロックの置き換え方は変えていません）
 
 | クラス | 変更前 | 変更後 | 内容 |
