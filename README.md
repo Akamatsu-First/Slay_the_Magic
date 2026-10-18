@@ -83,7 +83,7 @@ Minecraft Java Edition 1.20.1（Forge 47.4.10）向けで、Prism Launcher で�
 
 ## Modに加えた変更
 
-このModpackでは以下の6つのModの一部を変更しています。どこをどのように変えたかを、すべてここに公開します（LGPLで公開されているModについては、ライセンスでも公開が求められています）。
+このModpackでは以下の5つのModの一部を変更しています。どこをどのように変えたかを、すべてここに公開します（LGPLで公開されているModについては、ライセンスでも公開が求められています）。
 
 変更は、ZIPに入っているパッチツール（stm_patcher）が、プレイヤーのパソコンにある公式のファイルに対して行います。ZIPに入っているのは書き換える部分のデータだけで、Modそのものは含んでいません。ここに書いた箇所以外は公式のファイルから変えていません。
 
@@ -125,22 +125,6 @@ Minecraft Java Edition 1.20.1（Forge 47.4.10）向けで、Prism Launcher で�
 | `entity/spells/bullets/FrozenBulletProjectile` | `setDuration(300)` | `setDuration(40)` | 氷の塊に閉じ込める時間を 15 秒から 2 秒にする |
 
 （クラスはすべて `net/acetheeldritchking/cataclysm_spellbooks/` の下にあります）
-
-### Too Many Bows
-
-- 対象のファイル：`too_many_bows-forge-3.8.0.jar`
-- ライセンス：MIT（jar 内の表記）
-- 配布ページ：https://www.curseforge.com/minecraft/mc-mods/too-many-bows
-- 変更点：下の表のとおり（どれも数値の変更だけです）
-
-| クラス | 変更前 | 変更後 | 内容 |
-|---|---|---|---|
-| `entity/IcicleJavelin` | `setBaseDamage(7.0)` | `setBaseDamage(17.0)` | 氷の投げ槍の基本ダメージを 10 上げる |
-| `item/IcicleJavelinBow` | `BASE_DAMAGE = 3.0` | `BASE_DAMAGE = 13.0` | 同じく、弓側で設定する基本ダメージを 10 上げる |
-| `item/IcicleJavelinBow` | `setBaseDamage(3.0 + 射撃ダメージ増加のレベル × 0.5)` | `setBaseDamage(13.0 + 射撃ダメージ増加のレベル × 0.5)` | 射撃ダメージ増加が付いているときも 10 上げる |
-| `entity/SonicBoomProjectile` | ダメージ `20.0f` | ダメージ `36.0f` | ソニックブームのダメージを 20 から 36 にする |
-
-（クラスはすべて `net/bandit/many_bows/` の下にあります）
 
 ### YUNG's Better End Island
 
