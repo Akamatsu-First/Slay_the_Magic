@@ -15,7 +15,7 @@ Minecraft Java Edition 1.20.1（Forge 47.4.10）向けで、Prism Launcher で�
 
 ## ゲーム開始までの流れ
 
-[![Slay the Magic 導入方法の動画](https://img.youtube.com/vi/D_9Lc4t8W2s/hqdefault.jpg)](https://www.youtube.com/watch?v=D_9Lc4t8W2s)
+[![Slay the Magic 導入方法の動画]([https://img.youtube.com/vi/D_9Lc4t8W2s/hqdefault.jpg)](https://www.youtube.com/watch?v=D_9Lc4t8W2s](https://youtu.be/E3YQHpYZHVE))
 
 画像をクリックすると YouTube で動画が開きます（現在準備中）
 
